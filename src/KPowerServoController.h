@@ -22,15 +22,15 @@ class KPowerServoController {
   int degree_to_microsec(int degree);
   int microsec_to_degree(int microsec);
   void update_current_microsec();
-  void set_min_degree(int degree);
-  void set_min_microsec(int microsec);
-  void set_max_degree(int degree);
-  void set_max_microsec(int microsec);
 
   public:
   int degree_buff;
 
   KPowerServoController(int servo_write_pin, int servo_read_pin);
+  void set_min_degree(int degree);
+  void set_min_microsec(int microsec);
+  void set_max_degree(int degree);
+  void set_max_microsec(int microsec);
   void power_on();
   void power_off();
   int get_current_degree();
