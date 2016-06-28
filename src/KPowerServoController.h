@@ -38,6 +38,7 @@ class KPowerServoController {
   int get_sensor_value();
   int get_sensor_degree();
   int get_sensor_microsec();
+  int get_target_microsec();
   boolean set_target_degree(int new_target_degree);
   boolean set_target_microsec(int new_target_microsec);
   boolean set_max_change_degree_per_sec(int new_max_change_degree_per_sec);

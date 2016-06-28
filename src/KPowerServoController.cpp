@@ -87,12 +87,18 @@ void KPowerServoController::set_max_degree(int degree) {
 
 void KPowerServoController::power_on() {
   myservo.attach(write_pin);
+
   current_microsec = get_sensor_microsec();
   target_microsec = current_microsec;
+
+  myservo.writeMicroseconds(current_microsec);
 }
 
 void KPowerServoController::power_off() {
-  myservo.detach();
+  if ( myservo.attached() ) {
+    myservo.detach();
+    //Serial.println("detached");
+  }
 }
 
 int KPowerServoController::get_current_degree() {
@@ -123,6 +129,10 @@ int KPowerServoController::get_sensor_microsec() {
   return sensor_value_to_microsec( get_sensor_value() );
 }
 
+int KPowerServoController::get_target_microsec() {
+  return target_microsec;
+}
+
 boolean KPowerServoController::set_target_degree(int new_target_degree) {
   set_target_microsec( degree_to_microsec(new_target_degree) );
 }
@@ -138,6 +148,7 @@ boolean KPowerServoController::set_target_microsec(int new_target_microsec) {
   }
 
   target_microsec = new_target_microsec;
+  //Serial.println(target_microsec);
   return true;
 }
 
